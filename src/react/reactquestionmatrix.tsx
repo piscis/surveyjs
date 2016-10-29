@@ -35,6 +35,15 @@ export class SurveyQuestionMatrix extends React.Component<any, any> {
             <table className={this.css.root}>
                 <thead>
                     <tr>
+                        <td></td>
+                        <td><div className="mood-icon mood-icon--bad"></div></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><div className="mood-icon mood-icon--good"></div></td>
+                    </tr>
+                    <tr>
                         {firstTH}
                         {headers}
                     </tr>
