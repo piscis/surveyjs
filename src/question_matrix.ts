@@ -32,7 +32,7 @@ export class QuestionMatrixModel extends Question implements IMatrixData {
     private rowsValue: ItemValue[] = [];
     private isRowChanging = false;
     private generatedVisibleRows: Array<MatrixRowModel>;
-    public isAllRowRequired: boolean = false;
+    public isAllRowRequired: boolean = true;
     constructor(public name: string) {
         super(name);
     }
