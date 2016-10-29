@@ -1,11 +1,11 @@
-﻿import JsonObject from "./jsonobject";
-import Question from "./question";
+﻿import {JsonObject} from "./jsonobject";
+import {Question} from "./question";
 import {ItemValue, SurveyError} from "./base";
 import {surveyLocalization} from "./surveyStrings";
 import {CustomError} from "./error";
 import {ChoicesRestfull} from "./choicesRestfull";
 
-export default class QuestionSelectBase extends Question {
+export class QuestionSelectBase extends Question {
     private commentValue: string;
     protected cachedValue: any;
     otherItem: ItemValue = new ItemValue("other", surveyLocalization.getString("otherItemText"));
@@ -90,6 +90,7 @@ export default class QuestionSelectBase extends Question {
     set choicesOrder(newValue: string) {
         if (newValue == this.choicesOrderValue) return;
         this.choicesOrderValue = newValue;
+        this.fireCallback(this.choicesChangedCallback);
     }
     get otherText(): string { return this.otherItem.text; }
     set otherText(value: string) { this.otherItem.text = value; }

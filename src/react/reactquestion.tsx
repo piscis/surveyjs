@@ -1,18 +1,18 @@
 ﻿import * as React from 'react';
-import QuestionBase from '../questionbase';
-import Question from '../question';
-import {ReactSurveyQuestionCommentItem} from './reactquestioncomment';
+import {QuestionBase} from '../questionbase';
+import {Question} from '../question';
+import {SurveyQuestionCommentItem} from './reactquestioncomment';
 
-export interface IReactSurveyCreator {
+export interface ISurveyCreator {
     createQuestionElement(question: QuestionBase): JSX.Element;
     renderError(key: string, errorText: string): JSX.Element;
     questionTitleLocation(): string;
 }
 
-export default class ReactSurveyQuestion extends React.Component<any, any> {
+export class SurveyQuestion extends React.Component<any, any> {
     private questionBase: QuestionBase;
     protected question: Question;
-    private creator: IReactSurveyCreator;
+    private creator: ISurveyCreator;
     protected css: any;
     constructor(props: any) {
         super(props);
@@ -38,11 +38,15 @@ export default class ReactSurveyQuestion extends React.Component<any, any> {
             }
         }
     }
+    componentDidMount() {
+        if (this.questionBase) this.questionBase["react"] = this;
+    }
+    componentWillUnmount() {
+        if (this.questionBase) this.questionBase["react"] = null;
+    }
     render(): JSX.Element {
         if (!this.questionBase || !this.creator) return null;
-        this.questionBase["react"] = this; //TODO
         if (!this.questionBase.visible) return null;
-        var className = "ReactSurveyQuestion" + this.questionBase.getType();
         var questionRender = this.creator.createQuestionElement(this.questionBase);
         var title = this.questionBase.hasTitle ? this.renderTitle() : null;
         var titleTop = this.creator.questionTitleLocation() == "top" ? title : null;
@@ -73,18 +77,18 @@ export default class ReactSurveyQuestion extends React.Component<any, any> {
         return (<div>
                 <div>{this.question.commentText}</div>
                 <div className={this.css.question.comment}>
-                <ReactSurveyQuestionCommentItem  question={this.question}/>
+                <SurveyQuestionCommentItem  question={this.question}/>
                 </div>
             </div>);
     }
     protected renderErrors(): JSX.Element {
-        return <ReactSurveyQuestionErrors question={this.question} css={this.css} creator={this.creator} />
+        return <SurveyQuestionErrors question={this.question} css={this.css} creator={this.creator} />
     }
 }
 
-export class ReactSurveyQuestionErrors extends React.Component<any, any> {
+export class SurveyQuestionErrors extends React.Component<any, any> {
     protected question: Question;
-    private creator: IReactSurveyCreator;
+    private creator: ISurveyCreator;
     protected css: any;
     constructor(props: any) {
         super(props);

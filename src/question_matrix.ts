@@ -1,14 +1,17 @@
-﻿import Base, {ItemValue} from "./base";
-import Question from "./question";
-import JsonObject from "./jsonobject";
-import QuestionFactory from "./questionfactory";
+﻿import {Base, ItemValue} from "./base";
+import {Question} from "./question";
+import {JsonObject} from "./jsonobject";
+import {SurveyError} from "./base";
+import {surveyLocalization} from './surveyStrings';
+import {CustomError} from "./error";
+import {QuestionFactory} from "./questionfactory";
 
 export interface IMatrixData {
     onMatrixRowChanged(row: MatrixRowModel);
 }
 export class MatrixRowModel extends Base {
     private data: IMatrixData;
-    protected rowValue: any;
+    protected rowValue: any; 
 
     constructor(public name: any, public text: string, public fullName: string, data: IMatrixData, value: any) {
         super();
@@ -24,11 +27,12 @@ export class MatrixRowModel extends Base {
     protected onValueChanged() {
     }
 }
-export default class QuestionMatrixModel extends Question implements IMatrixData {
+export class QuestionMatrixModel extends Question implements IMatrixData {
     private columnsValue: ItemValue[] = [];
     private rowsValue: ItemValue[] = [];
     private isRowChanging = false;
     private generatedVisibleRows: Array<MatrixRowModel>;
+    public isAllRowRequired: boolean = false;
     constructor(public name: string) {
         super(name);
     }
@@ -46,7 +50,6 @@ export default class QuestionMatrixModel extends Question implements IMatrixData
     set rows(newValue: Array<any>) {
         ItemValue.setData(this.rowsValue, newValue);
     }
-
     public get visibleRows(): Array<MatrixRowModel> {
         var result = new Array<MatrixRowModel>();
         var val = this.value;
@@ -61,6 +64,24 @@ export default class QuestionMatrixModel extends Question implements IMatrixData
         this.generatedVisibleRows = result;
         return result;
     }
+    protected onCheckForErrors(errors: Array<SurveyError>) {
+        super.onCheckForErrors(errors);
+        if (this.hasErrorInRows()) {
+            this.errors.push(new CustomError(surveyLocalization.getString("requiredInAllRowsError")));
+        }
+    }
+    private hasErrorInRows(): boolean {
+        if (!this.isAllRowRequired) return false;
+        var rows = this.generatedVisibleRows;
+        if (!rows) rows = this.visibleRows;
+        if (!rows) return false;
+        for (var i = 0; i < rows.length; i++) {
+            var val = rows[i].value;
+            if (!val) return true;
+        }
+        return false;
+    }
+
     protected createMatrixRow(name: any, text: string, fullName: string, value: any): MatrixRowModel {
         return new MatrixRowModel(name, text, fullName, this, value);
     }

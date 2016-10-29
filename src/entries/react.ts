@@ -4,32 +4,33 @@ export * from "./chunks/model";
 // localization
 import './chunks/localization';
 
-// react
-export {default as ReactSurveyBase} from "../react/reactSurvey";
-export {default as ReactSurveyModel} from "../react/reactsurveymodel";
-export {default as ReactSurveyNavigation} from "../react/reactSurveyNavigation";
-export {default as ReactSurveyPage, ReactSurveyRow} from "../react/reactpage";
-export {default as ReactSurveyProgressBase} from "../react/reactSurveyProgress";
-export {default as ReactSurveyQuestion,  ReactSurveyQuestionErrors} from "../react/reactquestion";
-export {ReactSurveyQuestionCommentItem, default as ReactSurveyQuestioncomment} from "../react/reactquestioncomment";
-export {default as ReactSurveyQuestioncheckbox} from "../react/reactquestioncheckbox";
-export {default as ReactSurveyQuestiondropdown} from "../react/reactquestiondropdown";
-export {default as ReactSurveyQuestionmatrixdropdown} from "../react/reactquestionmatrixdropdown";
-export {default as ReactSurveyQuestionmatrix} from "../react/reactquestionmatrix";
-export {default as ReactSurveyQuestionhtml} from "../react/reactquestionhtml";
-export {default as ReactSurveyQuestionfile} from "../react/reactquestionfile";
-export {default as ReactSurveyQuestionmultipletext} from "../react/reactquestionmultipletext";
-export {default as ReactSurveyQuestionradiogroup} from "../react/reactquestionradiogroup";
-export {default as ReactSurveyQuestiontext} from "../react/reactquestiontext";
-export {ReactSurveyQuestioncheckboxItem} from "../react/reactquestioncheckbox";
-export {ReactSurveyQuestionmatrixRow} from "../react/reactquestionmatrix";
-export {ReactSurveyQuestionmatrixdropdownRow} from "../react/reactquestionmatrixdropdown";
-export {ReactSurveyQuestionmultipletextItem} from "../react/reactquestionmultipletext";
-export {default as ReactSurveyQuestionmatrixdynamic, ReactSurveyQuestionmatrixdynamicRow} from "../react/reactquestionmatrixdynamic";
-export {default as ReactSurvey} from "../react/reactSurvey";
-export {default as ReactSurveyProgress} from "../react/reactSurveyProgress";
-export {default as ReactSurveyQuestionrating} from "../react/reactquestionrating";
-export {default as ReactSurveyWindow} from "../react/reactSurveyWindow";
-
 // css standard
-export {default as defaultStandardCss} from "../defaultCss/cssstandard";
+export {defaultStandardCss} from "../defaultCss/cssstandard";
+//css frameworks
+import './chunks/cssFrameworks';
+
+// react
+export {Survey} from "../react/reactSurvey";
+export {ReactSurveyModel} from "../react/reactsurveymodel";
+export {SurveyNavigation} from "../react/reactSurveyNavigation";
+export {SurveyPage, SurveyRow} from "../react/reactpage";
+export {SurveyQuestion,  SurveyQuestionErrors} from "../react/reactquestion";
+export {SurveyQuestionCommentItem, SurveyQuestionComment} from "../react/reactquestioncomment";
+export {SurveyQuestionCheckbox, SurveyQuestionCheckboxItem} from "../react/reactquestioncheckbox";
+export {SurveyQuestionDropdown} from "../react/reactquestiondropdown";
+export {SurveyQuestionMatrixDropdown, SurveyQuestionMatrixDropdownRow} from "../react/reactquestionmatrixdropdown";
+export {SurveyQuestionMatrix, SurveyQuestionMatrixRow} from "../react/reactquestionmatrix";
+export {SurveyQuestionHtml} from "../react/reactquestionhtml";
+export {SurveyQuestionFile} from "../react/reactquestionfile";
+export {SurveyQuestionMultipleText, SurveyQuestionMultipleTextItem} from "../react/reactquestionmultipletext";
+export {SurveyQuestionRadiogroup} from "../react/reactquestionradiogroup";
+export {SurveyQuestionText} from "../react/reactquestiontext";
+export {SurveyQuestionMatrixDynamic, SurveyQuestionMatrixDynamicRow} from "../react/reactquestionmatrixdynamic";
+export {SurveyProgress} from "../react/reactSurveyProgress";
+export {SurveyQuestionRating} from "../react/reactquestionrating";
+export {SurveyWindow} from "../react/reactSurveyWindow";
+export {ReactQuestionFactory} from "../react/reactquestionfactory";
+
+export {__extends} from "../extends";
+
+//export {default as SurveyQuestionDate} from "../plugins/questiondate/react/reactquestiondate";

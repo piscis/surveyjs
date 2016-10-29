@@ -1,9 +1,9 @@
 ﻿import * as React from 'react';
-import QuestionMultipleTextModel from "../question_multipletext";
+import {QuestionMultipleTextModel} from "../question_multipletext";
 import {MultipleTextItemModel} from "../question_multipletext";
-import ReactQuestionFactory from "./reactquestionfactory";
+import {ReactQuestionFactory} from "./reactquestionfactory";
 
-export default class ReactSurveyQuestionmultipletext extends React.Component<any, any> {
+export class SurveyQuestionMultipleText extends React.Component<any, any> {
     private question: QuestionMultipleTextModel;
     protected css: any;
     constructor(props: any) {
@@ -40,11 +40,11 @@ export default class ReactSurveyQuestionmultipletext extends React.Component<any
         return <tr key={key}>{tds}</tr>;
     }
     protected renderItem(item: MultipleTextItemModel): JSX.Element {
-        return <ReactSurveyQuestionmultipletextItem item={item} css={this.css} />;
+        return <SurveyQuestionMultipleTextItem item={item} css={this.css} />;
     }
 }
 
-export class ReactSurveyQuestionmultipletextItem extends React.Component<any, any> {
+export class SurveyQuestionMultipleTextItem extends React.Component<any, any> {
     private item: MultipleTextItemModel;
     protected css: any;
     constructor(props: any) {
@@ -71,5 +71,5 @@ export class ReactSurveyQuestionmultipletextItem extends React.Component<any, an
 }
 
 ReactQuestionFactory.Instance.registerQuestion("multipletext", (props) => {
-    return React.createElement(ReactSurveyQuestionmultipletext, props);
+    return React.createElement(SurveyQuestionMultipleText, props);
 });

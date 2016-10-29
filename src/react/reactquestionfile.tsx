@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import {QuestionFileModel} from "../question_file";
-import ReactQuestionFactory from "./reactquestionfactory";
+import {ReactQuestionFactory} from "./reactquestionfactory";
 
-export default class ReactSurveyQuestionfile extends React.Component<any, any> {
+export class SurveyQuestionFile extends React.Component<any, any> {
     private question: QuestionFileModel;
     protected css: any;
     constructor(props: any) {
@@ -16,7 +16,7 @@ export default class ReactSurveyQuestionfile extends React.Component<any, any> {
         var src = event.target || event.srcElement; 
         if (!window["FileReader"]) return;
         if (!src || !src.files || src.files.length < 1) return;
-        this.question.loadFile(src.files[0])
+        this.question.loadFile(src.files[0]);
         this.setState({ fileLoaded: this.state.fileLoaded + 1 });
     }
     componentWillReceiveProps(nextProps: any) {
@@ -39,5 +39,5 @@ export default class ReactSurveyQuestionfile extends React.Component<any, any> {
 }
 
 ReactQuestionFactory.Instance.registerQuestion("file", (props) => {
-    return React.createElement(ReactSurveyQuestionfile, props);
+    return React.createElement(SurveyQuestionFile, props);
 });

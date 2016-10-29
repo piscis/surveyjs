@@ -1,9 +1,9 @@
 ﻿import * as React from 'react';
-import QuestionCommentModel from "../question_comment";
-import Question from "../question";
-import ReactQuestionFactory from "./reactquestionfactory";
+import {QuestionCommentModel} from "../question_comment";
+import {Question} from "../question";
+import {ReactQuestionFactory} from "./reactquestionfactory";
 
-export default class ReactSurveyQuestioncomment extends React.Component<any, any> {
+export class SurveyQuestionComment extends React.Component<any, any> {
     private question: QuestionCommentModel;
     protected css: any;
     constructor(props: any) {
@@ -28,7 +28,7 @@ export default class ReactSurveyQuestioncomment extends React.Component<any, any
     }
 }
 
-export class ReactSurveyQuestionCommentItem extends React.Component<any, any> {
+export class SurveyQuestionCommentItem extends React.Component<any, any> {
     private question: Question;
     private comment: string;
     protected css: any;
@@ -58,5 +58,5 @@ export class ReactSurveyQuestionCommentItem extends React.Component<any, any> {
 }
 
 ReactQuestionFactory.Instance.registerQuestion("comment", (props) => {
-    return React.createElement(ReactSurveyQuestioncomment, props);
+    return React.createElement(SurveyQuestionComment, props);
 });

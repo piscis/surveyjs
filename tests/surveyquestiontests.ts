@@ -1,17 +1,17 @@
-﻿import Question from "../src/question";
-import QuestionFactory from "../src/questionfactory";
-import QuestionSelectBase from "../src/question_baseselect";
-import QuestionTextModel from "../src/question_text";
-import SurveyModel from "../src/survey";
+﻿import {Question} from "../src/question";
+import {QuestionFactory} from "../src/questionfactory";
+import {QuestionSelectBase} from "../src/question_baseselect";
+import {QuestionTextModel} from "../src/question_text";
+import {SurveyModel} from "../src/survey";
 import {QuestionCheckboxModel} from "../src/question_checkbox";
-import QuestionMatrixModel from "../src/question_matrix";
-import {MultipleTextItemModel, default as QuestionMultipleTextModel} from "../src/question_multipletext";
+import {QuestionMatrixModel} from "../src/question_matrix";
+import {MultipleTextItemModel, QuestionMultipleTextModel} from "../src/question_multipletext";
 import {NumericValidator, AnswerCountValidator} from "../src/validator";
-import QuestionRadiogroupModel from "../src/question_radiogroup";
-import QuestionMatrixDropdownModel from "../src/question_matrixdropdown";
+import {QuestionRadiogroupModel} from "../src/question_radiogroup";
+import {QuestionMatrixDropdownModel} from "../src/question_matrixdropdown";
 import {MatrixDropdownColumn} from "../src/question_matrixdropdownbase";
-import QuestionDropdownModel from "../src/question_dropdown";
-import QuestionMatrixDynamicModel from "../src/question_matrixdynamic";
+import {QuestionDropdownModel} from "../src/question_dropdown";
+import {QuestionMatrixDynamicModel} from "../src/question_matrixdynamic";
 
 QUnit.module("Survey_Questions");
 
@@ -126,6 +126,14 @@ QUnit.test("Matrix Question set values after visible row generated", function (a
     var rows = matrix.visibleRows;
     matrix.value = { row1: "col1" };
     assert.equal(rows[0].value, "col1", "set the row value correctly");
+});
+QUnit.test("Matrix Question isAllRowRequired property", function (assert) {
+    var matrix = new QuestionMatrixModel("q1");
+    matrix.rows = ["row1", "row2"];
+    matrix.columns = ["col1", "col2"];
+    assert.equal(matrix.hasErrors(), false, "There is no errors by default");
+    matrix.isAllRowRequired = true;
+    assert.equal(matrix.hasErrors(), true, "There is no errors by default");
 });
 QUnit.test("Multiple Text Item: text property", function (assert) {
     var mItem = new MultipleTextItemModel("text1");
